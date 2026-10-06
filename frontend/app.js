@@ -289,7 +289,7 @@ byId("grade-form").addEventListener("submit", async function (event) {
   const payload = { student_id: state.renderedStudentId, subject: byId("subject").value, value: value };
   state.submitting = true;
   updateGradeForm();
-  console.log(payload)
+  // console.log(payload)
   const button = byId("add-grade");
   button.textContent = "Добавляем…";
   byId("grade-error").hidden = true;
