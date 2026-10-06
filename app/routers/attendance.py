@@ -6,6 +6,8 @@ router = APIRouter(prefix="/api", tags=["Посещаемость"])
 
 
 def calculate_attendance(attendance):
+    if attendance["total"] == 0:
+        return "0"
     return round(attendance["present"] / attendance["total"] * 100, 1)
 
 
