@@ -1,5 +1,5 @@
-const state = {students: [], subjects: [], studentId: null, renderedStudentId: null, refreshing: false, submitting: false, version: 0};
-const byId = function (id) {return document.getElementById(id);};
+const state = { students: [], subjects: [], studentId: null, renderedStudentId: null, refreshing: false, submitting: false, version: 0 };
+const byId = function (id) { return document.getElementById(id); };
 
 function node(tag, className, text) {
   const element = document.createElement(tag);
@@ -9,7 +9,7 @@ function node(tag, className, text) {
 }
 
 function selectedStudent() {
-  return state.students.find(function (student) {return student.id === state.studentId;});
+  return state.students.find(function (student) { return student.id === state.studentId; });
 }
 
 function updateGradeForm() {
@@ -20,30 +20,30 @@ function updateGradeForm() {
 }
 
 function initials(name) {
-  return name.split(" ").map(function (part) {return part[0];}).slice(0, 2).join("");
+  return name.split(" ").map(function (part) { return part[0]; }).slice(0, 2).join("");
 }
 
 async function request(path, options) {
   let response;
   try {
-    response = await fetch(path, Object.assign({cache: "no-store"}, options || {}));
+    response = await fetch(path, Object.assign({ cache: "no-store" }, options || {}));
   } catch (error) {
     error.status = "Нет соединения";
     error.path = path;
-    error.details = {message: "Сервер недоступен. Проверьте терминал и повторите запрос."};
+    error.details = { message: "Сервер недоступен. Проверьте терминал и повторите запрос." };
     throw error;
   }
   let data;
   try {
     data = await response.json();
   } catch (error) {
-    data = {error: {message: "Сервер вернул ответ не в формате JSON. Проверьте терминал."}};
+    data = { error: { message: "Сервер вернул ответ не в формате JSON. Проверьте терминал." } };
   }
   if (!response.ok) {
     const error = new Error("Ошибка запроса");
     error.status = response.status;
     error.path = path;
-    error.details = data.error || {message: typeof data.detail === "string" ? data.detail : "Проверьте параметры запроса."};
+    error.details = data.error || { message: typeof data.detail === "string" ? data.detail : "Проверьте параметры запроса." };
     throw error;
   }
   return data;
@@ -52,18 +52,40 @@ async function request(path, options) {
 function showError(container, error) {
   container.replaceChildren();
   container.hidden = false;
-  const box = node("div", "backend-error");
-  box.append(node("div", "error-title", "Бэкенд вернул ошибку"));
-  box.append(node("p", "error-message", error.details.message));
-  const technical = node("div", "error-technical");
-  technical.append(node("code", "", String(error.status) + " · " + (error.details.type || "HTTP") ));
-  technical.append(node("code", "", error.path));
-  if (error.details.file) {
-    technical.append(node("code", "", error.details.file + ":" + error.details.line));
+
+  const message = error.details?.message;
+  let box;
+
+  if (message === 'Нельзя поставить такую оценку.') {
+    // console.log('оценка баг');
+    box = node('div', 'grade-error');
+    const title = node('div', 'error-title', 'Ошибка внесения оценки');
+    const textMessage = node('p', 'error-message', 'Нельзя поставить такую оценку (2, 3, 4, 5)');
+    box.append(title, textMessage);
+  } else {
+    box = node('div', 'backend-error');
+
+    const title = node('div', 'error-title', 'Бэкенд вернул ошибку');
+    const textMessage = node('p', 'error-message', message || 'Неизвестная ошибка');
+
+    const technical = node('div', 'error-technical');
+    technical.append(
+      node('code', '', `${error.status || ''} · ${error.details?.type || 'HTTP'}`),
+      node('code', '', error.path || '')
+    );
+
+    if (error.details?.file) {
+      technical.append(
+        node('code', '', `${error.details.file}:${error.details.line || ''}`)
+      );
+    }
+
+    box.append(title, textMessage, technical);
   }
-  box.append(technical);
+
   container.append(box);
 }
+
 
 function renderStudents() {
   const list = byId("students");
@@ -97,8 +119,8 @@ function renderGrades(student) {
     const row = node("div", "subject-row");
     row.append(node("span", "subject-name", subject));
     const marks = node("div", "marks");
-    const grades = student.grades.filter(function (grade) {return grade.subject === subject;});
-    grades.forEach(function (grade) {marks.append(node("span", "mark mark-" + grade.value, grade.value));});
+    const grades = student.grades.filter(function (grade) { return grade.subject === subject; });
+    grades.forEach(function (grade) { marks.append(node("span", "mark mark-" + grade.value, grade.value)); });
     if (grades.length === 0) marks.append(node("span", "no-mark", "Пока без оценок"));
     row.append(marks);
     list.append(row);
@@ -118,7 +140,7 @@ function renderGrades(student) {
 
 function renderAverage(container, data) {
   container.replaceChildren();
-  const number = data.average === null ? "—" : data.average.toLocaleString("ru-RU", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  const number = data.average === null ? "—" : data.average.toLocaleString("ru-RU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const value = node("div", "metric-value");
   value.append(node("span", "metric-number", number), node("span", "metric-unit", "из 5"));
   container.append(value, node("p", "metric-description", data.count ? "По всем предметам. Оценок в расчёте: " + data.count + "." : "Добавьте первую оценку, чтобы посчитать среднее."));
@@ -264,9 +286,10 @@ byId("grade-form").addEventListener("submit", async function (event) {
   const enteredGrade = byId("grade").value;
   const numericGrade = Number(enteredGrade);
   const value = enteredGrade.trim() !== "" && Number.isFinite(numericGrade) ? numericGrade : enteredGrade;
-  const payload = {student_id: state.renderedStudentId, subject: byId("subject").value, value: value};
+  const payload = { student_id: state.renderedStudentId, subject: byId("subject").value, value: value };
   state.submitting = true;
   updateGradeForm();
+  // console.log(payload)
   const button = byId("add-grade");
   button.textContent = "Добавляем…";
   byId("grade-error").hidden = true;
@@ -274,7 +297,7 @@ byId("grade-form").addEventListener("submit", async function (event) {
   try {
     await request("/api/grades", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
     if (state.studentId === payload.student_id) {

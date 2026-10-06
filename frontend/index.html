@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,57 +9,113 @@
   <link rel="stylesheet" href="/assets/styles.css">
   <script src="/assets/app.js" defer></script>
 </head>
+
 <body hidden>
   <a class="skip-link" href="#main">К дневнику</a>
   <div class="workspace">
     <aside class="sidebar" aria-label="Выбор ученика">
       <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">п.</span><span>Перемена</span></a>
-      <div class="sidebar-heading"><h2>Ученики</h2><span id="student-count"></span></div>
-      <nav id="students" class="student-list" aria-label="Ученики"><p class="loading-text">Загружаем список…</p></nav>
+      <div class="sidebar-heading">
+        <h2>Ученики</h2><span id="student-count"></span>
+      </div>
+      <nav id="students" class="student-list" aria-label="Ученики">
+        <p class="loading-text">Загружаем список…</p>
+      </nav>
     </aside>
     <main id="main" class="main-content">
       <header class="page-header">
         <h1 id="student-name">Открываем дневник…</h1>
         <div class="header-actions">
           <a class="swagger-link" href="/docs" target="_blank" rel="noopener noreferrer">Swagger</a>
-          <button id="refresh" class="button button-secondary" type="button"><span aria-hidden="true">↻</span> Обновить</button>
+          <button id="refresh" class="button button-secondary" type="button"><span aria-hidden="true">↻</span>
+            Обновить</button>
         </div>
       </header>
       <div id="global-error" class="backend-error global-error" role="alert" hidden></div>
       <div class="diary-grid">
         <section class="sheet grade-sheet" aria-labelledby="grades-title">
-          <div class="section-heading"><h2 id="grades-title">Журнал оценок</h2></div>
-          <div id="grades-list" class="grades-table"><p class="loading-text">Загружаем оценки…</p></div>
+          <div class="section-heading">
+            <h2 id="grades-title">Журнал оценок</h2>
+          </div>
+          <div id="grades-list" class="grades-table">
+            <p class="loading-text">Загружаем оценки…</p>
+          </div>
           <form id="grade-form" class="grade-form">
-            <div class="field subject-field"><label for="subject">Предмет</label><select id="subject" name="subject" required disabled><option>Загрузка…</option></select></div>
-            <div class="field mark-field"><label for="grade">Оценка</label><input id="grade" name="grade" type="text" value="4" autocomplete="off"></div>
+            <div class="field subject-field">
+              <label for="subject">Предмет</label>
+              <select id="subject" name="subject" required disabled>
+                <option>Загружаем...</option>
+              </select>
+            </div>
+
+            <div class="field mark-field">
+              <label for="grade">Оценка</label>
+              <select id="grade" name="grade" required disabled>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+
             <button id="add-grade" class="button button-primary" type="submit" disabled>Добавить оценку</button>
           </form>
+
           <p id="grade-message" class="form-message" role="status" hidden></p>
           <div id="grade-error" class="backend-error" role="alert" hidden></div>
         </section>
         <section class="sheet average-sheet" aria-labelledby="average-title">
-          <div class="section-heading"><h2 id="average-title">Средний балл</h2></div>
-          <div id="average-content" class="metric-content"><p class="loading-text">Считаем среднее…</p></div>
+          <div class="section-heading">
+            <h2 id="average-title">Средний балл</h2>
+          </div>
+          <div id="average-content" class="metric-content">
+            <p class="loading-text">Считаем среднее…</p>
+          </div>
         </section>
         <section class="sheet attendance-sheet" aria-labelledby="attendance-title">
-          <div class="section-heading"><h2 id="attendance-title">Посещаемость</h2></div>
-          <div id="attendance-content" class="metric-content"><p class="loading-text">Считаем посещаемость…</p></div>
+          <div class="section-heading">
+            <h2 id="attendance-title">Посещаемость</h2>
+          </div>
+          <div id="attendance-content" class="metric-content">
+            <p class="loading-text">Считаем посещаемость…</p>
+          </div>
         </section>
         <section class="sheet ranking-sheet" aria-labelledby="ranking-title">
-          <div class="section-heading"><h2 id="ranking-title">Кто собрал больше пятёрок</h2></div>
-          <div id="ranking-content"><p class="loading-text">Собираем рейтинг…</p></div>
+          <div class="section-heading">
+            <h2 id="ranking-title">Кто собрал больше пятёрок</h2>
+          </div>
+          <div id="ranking-content">
+            <p class="loading-text">Собираем рейтинг…</p>
+          </div>
         </section>
         <section class="sheet homework-sheet" aria-labelledby="homework-title">
-          <div class="section-heading"><h2 id="homework-title">Что осталось сделать</h2></div>
-          <div id="homework-content"><p class="loading-text">Ищем домашние задания…</p></div>
+          <div class="section-heading">
+            <h2 id="homework-title">Что осталось сделать</h2>
+          </div>
+          <div id="homework-content">
+            <p class="loading-text">Ищем домашние задания…</p>
+          </div>
         </section>
         <section class="sheet schedule-sheet" aria-labelledby="schedule-title">
-          <div class="section-heading"><h2 id="schedule-title">Расписание</h2><label class="day-picker" for="day"><span class="sr-only">День недели</span><select id="day"><option value="monday">Понедельник</option><option value="tuesday">Вторник</option><option value="wednesday">Среда</option><option value="thursday">Четверг</option><option value="friday">Пятница</option><option value="saturday">Суббота</option><option value="sunday">Воскресенье</option></select></label></div>
-          <div id="schedule-content"><p class="loading-text">Открываем расписание…</p></div>
+          <div class="section-heading">
+            <h2 id="schedule-title">Расписание</h2><label class="day-picker" for="day"><span class="sr-only">День
+                недели</span><select id="day">
+                <option value="monday">Понедельник</option>
+                <option value="tuesday">Вторник</option>
+                <option value="wednesday">Среда</option>
+                <option value="thursday">Четверг</option>
+                <option value="friday">Пятница</option>
+                <option value="saturday">Суббота</option>
+                <option value="sunday">Воскресенье</option>
+              </select></label>
+          </div>
+          <div id="schedule-content">
+            <p class="loading-text">Открываем расписание…</p>
+          </div>
         </section>
       </div>
     </main>
   </div>
 </body>
+
 </html>
