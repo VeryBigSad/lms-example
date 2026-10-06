@@ -9,7 +9,7 @@ def get_unfinished_homework(assignments, student_id):
     result = []
     for assignment in assignments:
         if assignment["student_id"] == student_id:
-            if assignment["done"] == True:
+            if assignment["done"] is False:
                 result.append(assignment)
     return result
 

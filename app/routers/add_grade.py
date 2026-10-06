@@ -18,7 +18,9 @@ def add_grade(data, student_id, subject, value):
     if value not in list(range(2, 5)):
         raise HTTPException(
             status_code=400, detail="Нельзя поставить такую оценку.")
-    student = data["students"][student_id]
+    student = storage.find_student(data, student_id)
+    if student is None:
+        raise HTTPException(status_code=404, detail="Ученик не найден.")
     student["grades"].append({"subject": subject, "value": value})
 
 
