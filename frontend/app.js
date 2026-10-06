@@ -57,7 +57,7 @@ function showError(container, error) {
   let box;
 
   if (message === 'Нельзя поставить такую оценку.') {
-    console.log('оценка баг');
+    // console.log('оценка баг');
     box = node('div', 'grade-error');
     const title = node('div', 'error-title', 'Ошибка внесения оценки');
     const textMessage = node('p', 'error-message', 'Нельзя поставить такую оценку (2, 3, 4, 5)');
