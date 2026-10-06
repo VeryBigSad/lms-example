@@ -11,8 +11,9 @@ def number_of_fives(student):
 
 def build_ranking(students):
     result = []
-    fives = 0
+#   fives = 0
     for student in students:
+        fives = 0
         for grade in student["grades"]:
             if grade["value"] == 5:
                 fives += 1
@@ -29,3 +30,5 @@ def build_ranking(students):
 def ranking():
     data = storage.load_data()
     return {"students": build_ranking(data["students"])}
+
+    
