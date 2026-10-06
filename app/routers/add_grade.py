@@ -15,6 +15,9 @@ class GradeInput(BaseModel):
 
 
 def add_grade(data, student_id, subject, value):
+    if value not in list(range(2, 5)):
+        raise HTTPException(
+            status_code=400, detail="Нельзя поставить такую оценку.")
     student = data["students"][student_id]
     student["grades"].append({"subject": subject, "value": value})
 
