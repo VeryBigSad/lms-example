@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#315de5">
+  <title>Вход — Перемена</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/login.js" defer></script>
+</head>
+<body class="login-page">
+  <main class="login-layout">
+    <a class="brand" href="/login" aria-label="Перемена, вход"><span class="brand-mark" aria-hidden="true">п.</span><span>Перемена</span></a>
+    <section class="login-sheet" aria-labelledby="login-title">
+      <h1 id="login-title">Открыть дневник</h1>
+      <form id="login-form">
+        <label for="password">Пароль</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required autofocus aria-describedby="login-error">
+        <p id="login-error" class="form-error" role="alert" hidden></p>
+        <button class="button button-primary" type="submit">Войти в дневник</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

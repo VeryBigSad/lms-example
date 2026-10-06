@@ -1,0 +1,236 @@
+{
+  "subjects": [
+    "Математика",
+    "Русский язык",
+    "Информатика",
+    "История"
+  ],
+  "students": [
+    {
+      "id": 2,
+      "name": "Аня Соколова",
+      "grades": [
+        {
+          "subject": "Математика",
+          "value": 5
+        },
+        {
+          "subject": "Русский язык",
+          "value": 4
+        },
+        {
+          "subject": "Информатика",
+          "value": 4
+        }
+      ],
+      "attendance": {
+        "present": 8,
+        "total": 10
+      }
+    },
+    {
+      "id": 0,
+      "name": "Борис Лебедев",
+      "grades": [
+        {
+          "subject": "Математика",
+          "value": 5
+        },
+        {
+          "subject": "Русский язык",
+          "value": 5
+        },
+        {
+          "subject": "Информатика",
+          "value": 5
+        },
+        {
+          "subject": "История",
+          "value": 4
+        }
+      ],
+      "attendance": {
+        "present": 9,
+        "total": 10
+      }
+    },
+    {
+      "id": 1,
+      "name": "Вика Морозова",
+      "grades": [
+        {
+          "subject": "Математика",
+          "value": 5
+        },
+        {
+          "subject": "Русский язык",
+          "value": 5
+        },
+        {
+          "subject": "Информатика",
+          "value": 4
+        }
+      ],
+      "attendance": {
+        "present": 0,
+        "total": 0
+      }
+    }
+  ],
+  "homework": [
+    {
+      "id": 1,
+      "student_id": 2,
+      "subject": "Математика",
+      "title": "Решить задачи 12–15",
+      "due": "К следующему уроку",
+      "done": false
+    },
+    {
+      "id": 2,
+      "student_id": 2,
+      "subject": "Русский язык",
+      "title": "Повторить части речи",
+      "due": "К следующему уроку",
+      "done": true
+    },
+    {
+      "id": 3,
+      "student_id": 2,
+      "subject": "Информатика",
+      "title": "Написать цикл для списка оценок",
+      "due": "До пятницы",
+      "done": false
+    },
+    {
+      "id": 4,
+      "student_id": 0,
+      "subject": "История",
+      "title": "Прочитать параграф 7",
+      "due": "К следующему уроку",
+      "done": false
+    },
+    {
+      "id": 5,
+      "student_id": 0,
+      "subject": "Математика",
+      "title": "Проверить домашнюю контрольную",
+      "due": "До пятницы",
+      "done": true
+    },
+    {
+      "id": 6,
+      "student_id": 1,
+      "subject": "Русский язык",
+      "title": "Подготовить короткий рассказ",
+      "due": "До пятницы",
+      "done": false
+    },
+    {
+      "id": 7,
+      "student_id": 1,
+      "subject": "Информатика",
+      "title": "Повторить функции Python",
+      "due": "К следующему уроку",
+      "done": true
+    }
+  ],
+  "schedule": [
+    {
+      "day": "monday",
+      "time": "09:00",
+      "subject": "Математика",
+      "room": "201"
+    },
+    {
+      "day": "monday",
+      "time": "10:00",
+      "subject": "Русский язык",
+      "room": "104"
+    },
+    {
+      "day": "monday",
+      "time": "11:00",
+      "subject": "Информатика",
+      "room": "305"
+    },
+    {
+      "day": "monday",
+      "time": "12:00",
+      "subject": "История",
+      "room": "202"
+    },
+    {
+      "day": "tuesday",
+      "time": "09:00",
+      "subject": "Информатика",
+      "room": "305"
+    },
+    {
+      "day": "tuesday",
+      "time": "10:00",
+      "subject": "Математика",
+      "room": "201"
+    },
+    {
+      "day": "tuesday",
+      "time": "11:00",
+      "subject": "Русский язык",
+      "room": "104"
+    },
+    {
+      "day": "wednesday",
+      "time": "09:00",
+      "subject": "История",
+      "room": "202"
+    },
+    {
+      "day": "wednesday",
+      "time": "10:00",
+      "subject": "Математика",
+      "room": "201"
+    },
+    {
+      "day": "wednesday",
+      "time": "11:00",
+      "subject": "Информатика",
+      "room": "305"
+    },
+    {
+      "day": "thursday",
+      "time": "09:00",
+      "subject": "Русский язык",
+      "room": "104"
+    },
+    {
+      "day": "thursday",
+      "time": "10:00",
+      "subject": "История",
+      "room": "202"
+    },
+    {
+      "day": "thursday",
+      "time": "11:00",
+      "subject": "Математика",
+      "room": "201"
+    },
+    {
+      "day": "friday",
+      "time": "09:00",
+      "subject": "Информатика",
+      "room": "305"
+    },
+    {
+      "day": "friday",
+      "time": "10:00",
+      "subject": "Русский язык",
+      "room": "104"
+    },
+    {
+      "day": "friday",
+      "time": "11:00",
+      "subject": "История",
+      "room": "202"
+    }
+  ]
+}
