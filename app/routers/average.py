@@ -11,7 +11,7 @@ def calculate_average(grades):
     total = 0
     for grade in grades:
         total += grade["value"]
-    return round(total // len(grades), 2)
+    return round(total / len(grades), 2)
 
 
 @router.get("/average/{student_id}")
